@@ -14,7 +14,7 @@
  * @package raven
  */
 
-class Raven_Client
+class Raven_Client implements Raven_ClientInterface
 {
     const VERSION = '1.9.x-dev';
 
@@ -371,6 +371,11 @@ class Raven_Client
         return $this->server;
     }
 
+    public function getReprSerializer()
+    {
+        return $this->reprSerializer;
+    }
+
     public static function getUserAgent()
     {
         return 'sentry-php/' . self::VERSION;
@@ -576,13 +581,7 @@ class Raven_Client
     }
 
     /**
-     * Log an exception to sentry
-     *
-     * @param \Throwable|\Exception $exception The Throwable/Exception object.
-     * @param array                 $data      Additional attributes to pass with this event (see Sentry docs).
-     * @param mixed                 $logger
-     * @param mixed                 $vars
-     * @return string|null
+     * {@inheritdoc}
      */
     public function captureException($exception, $data = null, $logger = null, $vars = null)
     {

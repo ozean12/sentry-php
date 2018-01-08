@@ -46,13 +46,28 @@ class Raven_Serializer
     protected $mb_detect_order = self::DEFAULT_MB_DETECT_ORDER;
 
     /**
+     * @var Raven_ObjectSerializer
+     */
+    protected $objectSerializer;
+
+    /**
      * @param null|string $mb_detect_order
      */
-    public function __construct($mb_detect_order = null)
+    public function __construct($mb_detect_order = null, Raven_ObjectSerializer $objectSerializer = null)
     {
         if ($mb_detect_order != null) {
             $this->mb_detect_order = $mb_detect_order;
         }
+
+        $this->objectSerializer = $objectSerializer ?? new Raven_ObjectSerializer();
+    }
+
+    /**
+     * @return Raven_ObjectSerializer
+     */
+    public function getObjectSerializer()
+    {
+        return $this->objectSerializer;
     }
 
     /**
@@ -109,7 +124,8 @@ class Raven_Serializer
         if (is_null($value) || is_bool($value) || is_float($value) || is_integer($value)) {
             return $value;
         } elseif (is_object($value) || gettype($value) == 'object') {
-            return 'Object '.get_class($value);
+            die('test');
+            return $this->objectSerializer->serialize($value);
         } elseif (is_resource($value)) {
             return 'Resource '.get_resource_type($value);
         } elseif (is_array($value)) {

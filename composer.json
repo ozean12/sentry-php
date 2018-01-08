@@ -34,7 +34,8 @@
     ],
     "autoload": {
         "psr-0" : {
-            "Raven_" : "lib/"
+            "Raven_": "lib/",
+            "Sentry_": "lib/"
         }
     },
     "scripts": {
