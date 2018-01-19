@@ -376,6 +376,11 @@ class Raven_Client implements Raven_ClientInterface
         return $this->reprSerializer;
     }
 
+    public function getSerializer()
+    {
+        return $this->serializer;
+    }
+
     public static function getUserAgent()
     {
         return 'sentry-php/' . self::VERSION;

@@ -19,4 +19,9 @@ interface Raven_ClientInterface
      * @return Raven_ReprSerializer
      */
     public function getReprSerializer();
+
+    /**
+     * @return Raven_Serializer
+     */
+    public function getSerializer();
 }

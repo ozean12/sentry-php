@@ -8,7 +8,7 @@ class Raven_ObjectSerializer
     /**
      * @var Raven_ObjectSerializerInterface[]
      */
-    private $serializers;
+    private $serializers = [];
 
     /**
      * @param mixed $value

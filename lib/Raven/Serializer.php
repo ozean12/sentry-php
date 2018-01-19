@@ -124,7 +124,6 @@ class Raven_Serializer
         if (is_null($value) || is_bool($value) || is_float($value) || is_integer($value)) {
             return $value;
         } elseif (is_object($value) || gettype($value) == 'object') {
-            die('test');
             return $this->objectSerializer->serialize($value);
         } elseif (is_resource($value)) {
             return 'Resource '.get_resource_type($value);
